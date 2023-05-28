@@ -1,3 +1,22 @@
+# Project Objective DONE
+1. Adding free text protect < 100 character
+2. fetching users and userprofiles json every time
+3. process to check users exist in json to get users detail
+4. Check if he/she is child by birthdate
+5. save those data in memory cache
+6. scheduled sending email for those data
+7. clear cache when sending email success
+8. adding bgm and player to control the bgm
+
+# TO-DO
+If have more time, can better decorate the website with photo and like changing CSS for button,
+or adding some visual function like on-mouse hover
+
+Not sure if same child can send more than one message to santa at the same time, but as seen in users JSON
+only one of them is child, so I allow the message to store in key of UUID to allow multiple message
+
+
+
 # IMPORTANT! READ before starting
 By default for anonymous users (non logged in), your code and app will only remain on glitch.com for 5 days.
 In order to not lose your challenge, please create a glitch.com account and log in to glitch.com before proceeding.

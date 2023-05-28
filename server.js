@@ -12,10 +12,14 @@ const redis = require("ioredis-mock");
 const { promisify } = require("util");
 const emailSender = require("./emailSender");
 const uuid = require('uuid');
+const envconfig = require("dotenv").config();
 
 const client = new redis();
 const interval = setInterval(scheduledFunction, 15000); // 15 seconds in milliseconds
 
+const usersJSONUrl = process.env.USERS_JSON_URL;
+const usersProfilesJSONUrl = process.env.USERS_PROFILES_JSON_URL;
+const bgmUrl = process.env.BGM_URL;
 app.set("view engine", "ejs");
 app.set("views", __dirname + "/views");
 
@@ -30,7 +34,7 @@ app.use(express.static("public"));
 
 // http://expressjs.com/en/starter/basic-routing.html
 app.get("/", (request, response) => {
-  response.sendFile(__dirname + "/views/index.html");
+   response.render('index', { bgmUrl: process.env.BGM_URL });
 });
 
 //create error handle page with ejs
@@ -234,9 +238,7 @@ function calculateIsChild(birthdate) {
 // Function to retrieve userProfiles.json
 async function getUserProfiles() {
   try {
-    const response = await axios.get(
-      "https://raw.githubusercontent.com/alj-devops/santa-data/master/userProfiles.json"
-    );
+    const response = await axios.get(usersProfilesJSONUrl);
     return response.data;
   } catch (error) {
     console.error("Error retrieving userProfiles.json:", error);
@@ -246,9 +248,7 @@ async function getUserProfiles() {
 // Function to retrieve users.json
 async function getUsers() {
   try {
-    const response = await axios.get(
-      "https://raw.githubusercontent.com/alj-devops/santa-data/master/users.json"
-    );
+    const response = await axios.get(usersJSONUrl);
     return response.data;
   } catch (error) {
     console.error("Error retrieving users.json:", error);
