@@ -1,0 +1,15 @@
+<html>
+  <head>
+    <title>Error</title>
+    <script>
+      setTimeout(function() {
+        window.location.href = "/";
+      }, 5000); // Redirect after 5 seconds (5000 milliseconds)
+    </script>
+  </head>
+  <body>
+    <h1><%= userName %>! Your message is sending to Santa!!!</h1>
+    <p>Message : <%= message %></p>
+    <p>Redirecting back to the index page in 5 seconds...</p>
+  </body>
+</html>
